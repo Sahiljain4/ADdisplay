@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlay Ad Boxes with Close Button</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: transparent; /* Changed background color to transparent */
+        }
+
+        /* Overlay styling */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Ad box container, fixed on left */
+        .ad-box-container {
+            position: fixed;
+            top: 40%; /* Shifted upward */
+            left: 0;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 70%; /* Further reduced height */
+            background-color: transparent;
+            padding: 10px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 15px; /* Space between boxes */
+        }
+
+        /* Styling for each ad box */
+        .ad-box {
+            width: 150px; /* Reduced initial width */
+            height: 150px; /* Further reduced height */
+            background-color: white;
+            text-align: center;
+            border-radius: 8px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            transition: width 0.6s ease; /* Smooth width change on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0; /* Initially hidden */
+            transform: translateY(20px); /* Move down initially */
+        }
+
+        /* Animation for appearing boxes */
+        @keyframes appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply the animation */
+        .ad-box.appear {
+            animation: appear 0.6s forwards;
+        }
+
+        /* Fixed image container */
+        .ad-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 150px; /* Fixed width of the image */
+            height: 150px; /* Further reduced height of the image */
+            background-size: contain; /* Ensure the entire image fits */
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: opacity 0.6s ease;
+        }
+
+        /* Different background images for each ad box */
+        .ad-box:nth-child(1) .ad-image {
+            background-image: url("https://img.freepik.com/premium-photo/fast-electric-family-car-jet-black-beauty-shot_1311569-1285.jpg?w=740");
+        }
+
+        .ad-box:nth-child(2) .ad-image {
+            background-image: url("https://img.freepik.com/premium-photo/front-generic-red-black-city-car_110488-259.jpg?semt=ais_hybrid");
+        }
+
+        .ad-box:nth-child(3) .ad-image {
+            background-image: url("https://img.freepik.com/free-psd/yellow-isolated-car_23-2151852890.jpg?semt=ais_hybrid");
+        }
+
+        /* Content box that appears on hover */
+        .ad-content-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 150px; /* Adjusted to match the initial box size */
+            width: 250px; /* Increased width for the expanded area */
+            height: 150px; /* Further reduced height */
+            background-color: white;
+            color: black;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden; /* Ensure content fits within the box */
+            transition: background-color 0.6s ease; /* Smoother transition */
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-family: Arial, sans-serif;
+            text-align: left; /* Align text to the left */
+        }
+
+        /* Close button styling */
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Hover effect: Expands the box and shows content */
+        .ad-box:hover {
+            width: 400px; /* Expanded width */
+        }
+
+        .ad-box:hover .ad-content-box {
+            display: block;
+            background-color: white; /* White background on hover */
+        }
+
+        .ad-content-box h4 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .ad-content-box p {
+            margin: 10px 0 0;
+            font-size: 14px;
+        }
+
+        .shop-now {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: bold; /* Make button text bold */
+            color: #f44336; /* Bold color for text */
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        function closeAdBox(button) {
+            button.closest('.ad-box').style.display = 'none';
+        }
+
+        window.addEventListener('load', () => {
+            const boxes = document.querySelectorAll('.ad-box');
+            boxes.forEach((box, index) => {
+                setTimeout(() => {
+                    box.classList.add('appear');
+                }, index * 500); // Delay each box appearance
+            });
+        });
+    </script>
+</head>
+<body>
+    <!-- Overlay with Ad box -->
+    <div class="overlay">
+        <!-- Left side static ad box container -->
+        <div class="ad-box-container">
+            <!-- Ad boxes -->
+            <div class="ad-box">
+                <div class="ad-image"></div>
+                <div class="ad-content-box">
+                    <button class="close-btn" onclick="closeAdBox(this)">✕</button>
+                    <h4>More Info about Ad 1</h4>
+                    <p>Get 20% off your first purchase.</p>
+                    <a href="#" class="shop-now">Shop Now</a>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="ad-image"></div>
+                <div class="ad-content-box">
+                    <button class="close-btn" onclick="closeAdBox(this)">✕</button>
+                    <h4>More Info about Ad 2</h4>
+                    <p>Don't miss out on this deal!</p>
+                    <a href="#" class="shop-now">Shop Now</a>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="ad-image"></div>
+                <div class="ad-content-box">
+                    <button class="close-btn" onclick="closeAdBox(this)">✕</button>
+                    <h4>More Info about Ad 3</h4>
+                    <p>Up to 50% off for early birds.</p>
+                    <a href="#" class="shop-now">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

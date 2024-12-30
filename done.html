@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlay Ad Boxes with Fixed Image on Hover</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f0f0f0; /* Light background to better see the boxes */
+        }
+
+        /* Overlay styling */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black overlay */
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Ad box container, fixed on left */
+        .ad-box-container {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 75%; /* Increased height */
+            background-color: transparent;
+            padding: 10px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 20px; /* Space between boxes */
+        }
+
+        /* Styling for each ad box */
+        .ad-box {
+            width: 200px; /* Initial width */
+            height: 200px; /* Initial height */
+            background-color: white;
+            text-align: center;
+            border-radius: 8px;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            transition: width 0.6s ease; /* Smooth width change on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Fixed image container */
+        .ad-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px; /* Fixed width of the image */
+            height: 200px; /* Fixed height of the image */
+            background-size: cover;
+            background-position: center;
+            transition: opacity 0.6s ease;
+        }
+
+        /* Different background images for each ad box */
+        .ad-box:nth-child(1) .ad-image {
+            background-image: url("https://via.placeholder.com/200x200.png?text=Ad+Image+1");
+        }
+
+        .ad-box:nth-child(2) .ad-image {
+            background-image: url("https://via.placeholder.com/200x200.png?text=Ad+Image+2");
+        }
+
+        .ad-box:nth-child(3) .ad-image {
+            background-image: url("https://via.placeholder.com/200x200.png?text=Ad+Image+3");
+        }
+
+        .ad-box:nth-child(4) .ad-image {
+            background-image: url("https://via.placeholder.com/200x200.png?text=Ad+Image+4");
+        }
+
+        /* Content box that appears on hover */
+        .ad-content-box {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 200px; /* Adjusted to match the initial box size */
+            width: 200px; /* Same width as the expanded area */
+            height: 200px; /* Same height as the box */
+            background-color: white;
+            color: black;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden; /* Ensure content fits within the box */
+            transition: background-color 0.6s ease; /* Smoother transition */
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Hover effect: Expands the box and shows content */
+        .ad-box:hover {
+            width: 400px; /* Expanded width */
+        }
+
+        .ad-box:hover .ad-content-box {
+            display: block;
+            background-color: white; /* White background on hover */
+        }
+
+        .ad-content-box h4 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .ad-content-box p {
+            margin: 10px 0 0;
+            font-size: 14px;
+        }
+
+        .shop-now {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay with Ad box -->
+    <div class="overlay">
+        <!-- Left side static ad box container -->
+        <div class="ad-box-container">
+            <!-- Ad boxes -->
+            <div class="ad-box">
+                <div class="ad-image"></div>
+                <div class="ad-content-box">
+                    <h4>More Info about Ad 1</h4>
+                    <p>Get 20% off your first purchase.</p>
+                    <a href="#" class="shop-now">Shop Now</a>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="ad-image"></div>
+                <div class="ad-content-box">
+                    <h4>More Info about Ad 2</h4>
+                    <p>Don't miss out on this deal!</p>
+                    <a href="#" class="shop-now">Shop Now</a>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="ad-image"></div>
+                <div class="ad-content-box">
+                    <h4>More Info about Ad 3</h4>
+                    <p>Up to 50% off for early birds.</p>
+                    <a href="#" class="shop-now">Shop Now</a>
+                </div>
+            </div>
+            <div class="ad-box">
+                <div class="ad-image"></div>
+                <div class="ad-content-box">
+                    <h4>More Info about Ad 4</h4>
+                    <p>Hurry up! Offer ends soon.</p>
+                    <a href="#" class="shop-now">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
