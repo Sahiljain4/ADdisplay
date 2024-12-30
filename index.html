@@ -36,7 +36,7 @@
             left: 0;
             transform: translateY(-50%);
             width: 250px;
-            height: 70%;
+            height: 70%; /* Fixed container height */
             background-color: transparent;
             padding: 10px;
             z-index: 10000;
@@ -44,6 +44,7 @@
             flex-direction: column;
             justify-content: flex-start;
             gap: 15px; /* Space between boxes */
+            transition: transform 0.8s ease; /* Smooth transition for upward movement */
         }
 
         /* Styling for each ad box */
@@ -57,10 +58,10 @@
             cursor: pointer;
             overflow: hidden;
             display: flex;
-            transition: width 0.6s ease; /* Smooth width change on hover */
+            transition: width 0.6s ease, transform 0.6s ease; /* Smooth width change on hover and transform for position */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            opacity: 0; /* Initially hidden */
-            transform: translateY(20px); /* Move down initially */
+            opacity: 1;
+            transform: translateY(0); /* Maintain position when active */
         }
 
         /* Animation for appearing boxes */
@@ -138,6 +139,7 @@
         /* Hover effect: Expands the box and shows content */
         .ad-box:hover {
             width: 400px; /* Expanded width */
+            transform: translateY(-10px); /* Smooth upward movement */
         }
 
         .ad-box:hover .ad-content-box {
@@ -162,10 +164,17 @@
             color: #f44336; /* Bold color for text */
             text-decoration: none;
         }
+
+        /* Use flex-grow to make remaining boxes fill space */
+        .ad-box.hidden {
+            display: none; /* Completely hide the box when it's closed */
+        }
+
     </style>
     <script>
         function closeAdBox(button) {
-            button.closest('.ad-box').style.display = 'none';
+            const adBox = button.closest('.ad-box');
+            adBox.classList.add('hidden');  // Hide the ad box and remove it from the layout
         }
 
         window.addEventListener('load', () => {
@@ -189,7 +198,7 @@
                 <div class="ad-content-box">
                     <button class="close-btn" onclick="closeAdBox(this)">✕</button>
                     <h4>More Info about Ad 1</h4>
-                    <p>Get 20% off your first purchase.</p>
+                    <p>Don't miss out on this deal! exicting offer dont miss it now<br>Grab the deal now !!</p>
                     <a href="#" class="shop-now">Shop Now</a>
                 </div>
             </div>
@@ -198,7 +207,7 @@
                 <div class="ad-content-box">
                     <button class="close-btn" onclick="closeAdBox(this)">✕</button>
                     <h4>More Info about Ad 2</h4>
-                    <p>Don't miss out on this deal!</p>
+                    <p>Don't miss out on this deal! exicting offer dont miss it now<br>Grab the deal now !!</p>
                     <a href="#" class="shop-now">Shop Now</a>
                 </div>
             </div>
@@ -207,7 +216,7 @@
                 <div class="ad-content-box">
                     <button class="close-btn" onclick="closeAdBox(this)">✕</button>
                     <h4>More Info about Ad 3</h4>
-                    <p>Up to 50% off for early birds.</p>
+                    <p>Don't miss out on this deal! exicting offer dont miss it now<br>Grab the deal now !!</p>
                     <a href="#" class="shop-now">Shop Now</a>
                 </div>
             </div>
