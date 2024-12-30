@@ -32,9 +32,9 @@
         /* Ad box container, fixed to left */
         .ad-box-container {
             position: fixed;
-            top: 50%; /* Shifted upward */
+            top: 0; /* Shifted upward */
             left: 0;
-            transform: translateY(-50%);
+           
             width: 250px;
             height: 100%; /* Fixed container height */
             background-color: transparent;
@@ -43,14 +43,13 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            gap: 15px; /* Space between boxes */
-            transition: transform 0.8s ease; /* Smooth transition for upward movement */
+            gap: 10px; /* Reduced space between boxes */
         }
 
         /* Styling for each ad box */
         .ad-box {
             width: 150px; /* Initial width */
-            height: 150px; /* Initial height */
+            height: 120px; /* Reduced height */
             background-color: white;
             text-align: center;
             border-radius: 8px;
@@ -64,26 +63,13 @@
             transform: translateY(0); /* Maintain position when active */
         }
 
-        /* Animation for appearing boxes */
-        @keyframes appear {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Apply the animation */
-        .ad-box.appear {
-            animation: appear 0.6s forwards;
-        }
-
         /* Fixed image container */
         .ad-image {
             position: absolute;
             top: 0;
             left: 0;
             width: 150px; /* Fixed width of the image */
-            height: 150px; /* Fixed height of the image */
+            height: 120px; /* Reduced height of the image */
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -110,7 +96,7 @@
             top: 0;
             left: 150px; /* Adjusted to match the initial box size */
             width: 250px; /* Expanded width for the content */
-            height: 150px;
+            height: 120px; /* Reduced height for the content box */
             background-color: white;
             color: black;
             padding: 10px;
@@ -121,6 +107,24 @@
             border-bottom-right-radius: 8px;
             font-family: Arial, sans-serif;
             text-align: left;
+        }
+
+        .ad-content-box h4 {
+            margin: 0;
+            font-size: 16px; /* Reduced font size for heading */
+        }
+
+        .ad-content-box p {
+            margin: 8px 0 0;
+            font-size: 12px; /* Reduced font size for text */
+        }
+
+        .shop-now {
+            display: inline-block;
+            margin-top: 8px; /* Reduced margin for the button */
+            font-weight: bold; /* Make button text bold */
+            color: #f44336; /* Bold color for text */
+            text-decoration: none;
         }
 
         /* Close button styling */
@@ -147,27 +151,22 @@
             background-color: white; /* White background on hover */
         }
 
-        .ad-content-box h4 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .ad-content-box p {
-            margin: 10px 0 0;
-            font-size: 14px;
-        }
-
-        .shop-now {
-            display: inline-block;
-            margin-top: 10px;
-            font-weight: bold; /* Make button text bold */
-            color: #f44336; /* Bold color for text */
-            text-decoration: none;
-        }
-
         /* Use flex-grow to make remaining boxes fill space */
         .ad-box.hidden {
             display: none; /* Completely hide the box when it's closed */
+        }
+
+        /* Animation for appearing boxes */
+        @keyframes appear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply the animation */
+        .ad-box.appear {
+            animation: appear 0.6s forwards;
         }
 
     </style>
@@ -198,7 +197,7 @@
                 <div class="ad-content-box">
                     <button class="close-btn" onclick="closeAdBox(this)">✕</button>
                     <h4>More Info about Ad 1</h4>
-                    <p>Don't miss out on this deal! exicting offer dont miss it now<br>Grab the deal now !!</p>
+                    <p>Don't miss out on this deal! Exciting offer, don't miss it now.<br>Grab the deal now!</p>
                     <a href="#" class="shop-now">Shop Now</a>
                 </div>
             </div>
@@ -207,7 +206,7 @@
                 <div class="ad-content-box">
                     <button class="close-btn" onclick="closeAdBox(this)">✕</button>
                     <h4>More Info about Ad 2</h4>
-                    <p>Don't miss out on this deal! exicting offer dont miss it now<br>Grab the deal now !!</p>
+                    <p>Don't miss out on this deal! Exciting offer, don't miss it now.<br>Grab the deal now!</p>
                     <a href="#" class="shop-now">Shop Now</a>
                 </div>
             </div>
@@ -216,7 +215,7 @@
                 <div class="ad-content-box">
                     <button class="close-btn" onclick="closeAdBox(this)">✕</button>
                     <h4>More Info about Ad 3</h4>
-                    <p>Don't miss out on this deal! exicting offer dont miss it now<br>Grab the deal now !!</p>
+                    <p>Don't miss out on this deal! Exciting offer, don't miss it now.<br>Grab the deal now!</p>
                     <a href="#" class="shop-now">Shop Now</a>
                 </div>
             </div>
