@@ -10,31 +10,33 @@
             height: 100%;
             width: 100%;
             overflow: hidden;
-            background-color: gray; /* Changed background color to transparent */
+            background-color: transparent;
         }
 
         /* Overlay styling */
         .overlay {
             position: fixed;
             top: 0;
-            left: 0;
+            left: 0; /* Align overlay to top-left corner */
             width: 100%;
             height: 100%;
             background-color: transparent;
             z-index: 9999;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the left */
+            justify-content: flex-start; /* Align items to the top */
+            padding-top: 20px; /* Add space at the top */
         }
 
-        /* Ad box container, fixed on left */
+        /* Ad box container, fixed to left */
         .ad-box-container {
             position: fixed;
             top: 40%; /* Shifted upward */
             left: 0;
             transform: translateY(-50%);
             width: 250px;
-            height: 70%; /* Further reduced height */
+            height: 70%;
             background-color: transparent;
             padding: 10px;
             z-index: 10000;
@@ -46,8 +48,8 @@
 
         /* Styling for each ad box */
         .ad-box {
-            width: 150px; /* Reduced initial width */
-            height: 150px; /* Further reduced height */
+            width: 150px; /* Initial width */
+            height: 150px; /* Initial height */
             background-color: white;
             text-align: center;
             border-radius: 8px;
@@ -80,8 +82,8 @@
             top: 0;
             left: 0;
             width: 150px; /* Fixed width of the image */
-            height: 150px; /* Further reduced height of the image */
-            background-size: contain; /* Ensure the entire image fits */
+            height: 150px; /* Fixed height of the image */
+            background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
             transition: opacity 0.6s ease;
@@ -106,18 +108,18 @@
             position: absolute;
             top: 0;
             left: 150px; /* Adjusted to match the initial box size */
-            width: 250px; /* Increased width for the expanded area */
-            height: 150px; /* Further reduced height */
+            width: 250px; /* Expanded width for the content */
+            height: 150px;
             background-color: white;
             color: black;
             padding: 10px;
             box-sizing: border-box;
             overflow: hidden; /* Ensure content fits within the box */
-            transition: background-color 0.6s ease; /* Smoother transition */
+            transition: background-color 0.6s ease;
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
             font-family: Arial, sans-serif;
-            text-align: left; /* Align text to the left */
+            text-align: left;
         }
 
         /* Close button styling */
